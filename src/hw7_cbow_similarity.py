@@ -1,5 +1,3 @@
-"""Sadaf Khan, LING571, HW7, 11/23/2021. Program that evaluates a predictive CBOW distributional model of word
-similarity using word2vec."""
 import os
 import sys
 import nltk
@@ -15,8 +13,7 @@ output_filename = sys.argv[3]
 brown_sents = nltk.corpus.brown.sents()
 processed_sents = []
 
-# All words should be lowercase
-# Punctuation should removed, both from individual words and from the corpus
+# remove punctuation and convert to lowercase
 for sent in brown_sents:
     new_sent = []
     for i in range(len(sent)):
@@ -35,7 +32,6 @@ with open(output_filename, 'w', encoding='utf8') as g:
     ratings = []
     sims = []
 
-    # For each word pair in the file:
     for entry in judgements:
         entry_formatted = entry.split(",")
         rating = float(entry_formatted[2])

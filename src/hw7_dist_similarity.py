@@ -1,6 +1,3 @@
-"""Sadaf Khan, LING571, HW7, 11/21/2021. Program that creates and evaluates a distributional model of word similarity 
-based on local context term cooccurrence."""
-
 import os
 import sys
 import nltk
@@ -78,7 +75,6 @@ with open(output_filename, 'w', encoding='utf8') as g:
     ratings = []
     sims = []
 
-    # For each word pair in the file:
     for entry in judgements:
         entry_formatted = entry.split(",")
         word_pair = entry_formatted[0:2]
@@ -87,15 +83,10 @@ with open(output_filename, 'w', encoding='utf8') as g:
         word2 = word_pair[1]
         ratings.append(rating)
 
-        # For each word in the word pair:
         for word in word_pair:
-            # Print the word...
             g.write(word + ": ")
-
             if word in vectors:
                 top_features = sorted(vectors[word], key=vectors[word].get, reverse=True)[:10]
-
-                # and its ten (10) highest weighted features (words) and their weights, in the form feature:weight
                 for feature in top_features:
                     g.write(feature + ":" + str(vectors[word][feature]) + " ")
                 g.write("\n")
